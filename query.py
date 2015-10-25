@@ -249,5 +249,15 @@ def get_models_between(start_year, end_year):
 
 # 1. What is the returned value and datatype of ``Brand.query.filter_by(name='Ford')``?
 
+# Returned value is a list of the one Brand object with the name Ford.
+
+
+
 # 2. In your own words, what is an association table, and what *type* of relationship
 # does an association table manage?
+
+# An association table is used to linke a many-to-many relationship between
+# two tables. With an association table, you give yourself flexibility to make
+# changes in one table while minimizing the effect of the change on its "many-to-
+# many" partner table. You also avoid problems associated with having fields that 
+# might have multiple values. 
