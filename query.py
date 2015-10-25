@@ -124,7 +124,8 @@ init_app()
 
 # Get all brands with that are either discontinued or founded before 1950.
 
->>> brands = Brand.query.filter( db.or_(Brand.discontinued != None, Brand.founded < 1950) )
+>>> brands = Brand.query.filter( db.or_(Brand.discontinued != None,
+                                        Brand.founded < 1950) )
 
 >>> for brand in brands:
 ...     print brand
@@ -205,7 +206,7 @@ def get_model_info(year):
 def get_brands_summary():
     '''Prints out each brand name, and each model name for that brand
      using only ONE database query.'''
-    
+   
     brands = Brand.query.all()
 
     for brand in brands:
@@ -214,18 +215,33 @@ def get_brands_summary():
             print "%s, %d" % (model.name, model.year)
         print "\n"
 
-    
-
 # -------------------------------------------------------------------
 
 
 # Part 2.5: Advanced and Optional
 def search_brands_by_name(mystr):
-    pass
+    """Design a function in python that takes in any string as parameter,
+    and returns a list of objects that are brands whose name contains or is
+    equal to the input string."""
 
+    brands = Brand.query.filter(Brand.name.like('%' + mystr + '%')).all()
+    return brands
 
 def get_models_between(start_year, end_year):
-    pass
+    """Design a function that takes in a start year and end year (two
+    integers),and returns a list of objects that are models with years
+    that fall between the start year and end year"""
+
+    years = []
+    current_year = start_year + 1
+
+    for yr in range(end_year - start_year - 1):
+        years.append(current_year)
+        current_year += 1
+
+    models = Model.query.filter(Model.year.in_(years)).all()
+
+    return models
 
 # -------------------------------------------------------------------
 
