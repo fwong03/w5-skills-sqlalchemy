@@ -43,7 +43,7 @@ class Brand(db.Model):
     discontinued = db.Column(db.Integer)
 
     def __repr__(self):
-        return "<id=%r, name=%r, founded=%r, HQ=%r, disc=%r" % (
+        return "<id=%r, name=%r, founded=%r, HQ=%r, disc=%r>" % (
             self.id, self.name, self.founded, self.headquarters,
             self.discontinued)
 
